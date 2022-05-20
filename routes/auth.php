@@ -8,9 +8,11 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+//Routeクラスの読み込み
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
+    //                     配列に挿入
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 

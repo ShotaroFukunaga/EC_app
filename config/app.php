@@ -188,6 +188,7 @@ return [
     |
     */
 
+    //エイリアス→別名という意味、クラスを使用する時などにエイリアスを使って呼び出しができる
     'aliases' => [
 
         'App' => Illuminate\Support\Facades\App::class,
