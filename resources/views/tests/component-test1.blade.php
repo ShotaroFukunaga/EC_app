@@ -6,4 +6,6 @@
   <x-tests.card title="タイトル1" content="コンテンツ1" :message="$message"/>
   <!-- 変数（:meesage） :←ダブルコロンをつけることで変数だと明示的に表現する -->
   <x-tests.card title="タイトル２"></x-tests.card>
+  <x-tests.card title="cssを変更したい" class="bg-red-300"/>
+  <!-- attributes->mergeのとこ、追加したい要素を書いている -->
 </x-tests.app>
