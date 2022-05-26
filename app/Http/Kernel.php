@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+// as HttpKernel : 名前を指定している
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
