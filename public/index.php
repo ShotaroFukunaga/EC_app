@@ -43,6 +43,14 @@ require __DIR__.'/../vendor/autoload.php';
 | to this client's browser, allowing them to enjoy our application.
 |
 */
+/*
+| $appという変数に一つ上のディレクトリのbootstrap/app.phpというファイルを読み込む
+| $kernelにKernelクラスのインスタンスを作成
+| $responseに$kernelインスタンスのhandleメソッドを実行
+| $request変数にRequest.phpのcapture->SymfonyRequest::createFromGlobalsでリクエストが生成されている（SymfonyRequestはphpのフレームワークを受け継いでいる）
+| 参考 https://zenn.dev/nshiro/articles/f165468a4f4d53
+| send処理が終了したら$request,$response共にterminateで削除しておく
+*/
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 

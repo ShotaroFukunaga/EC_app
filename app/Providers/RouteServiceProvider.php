@@ -17,7 +17,16 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+    //アクセス修飾子、
+    // public
+    // どこからでもアクセス可能です。アクセス修飾子がない場合は、publicを指定したものと同じになります。
+    // protected
+    // そのクラス自身と継承クラスからアクセス可能です。つまり非公開ですが、継承は可能となります。
+    // private
+    // 同じクラスの中でのみアクセス可能です。非公開で継承クラスからもアクセス不可能となります。
     public const HOME = '/dashboard';
+    public const OWNER_HOME = '/owner/dashboard';
+    public const ADMIN_HOME = '/admin/dashboard';
 
     /**
      * The controller namespace for the application.
@@ -33,6 +42,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
+    //どのルーティングファイルを実行するかを決定する設定、prefixなどをつけることで区別する
     public function boot()
     {
         $this->configureRateLimiting();
@@ -43,7 +54,21 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware('web')
+            Route::prefix('owner')
+                ->as('owner.')
+                ->middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/owner.php'));
+
+            Route::prefix('admin')
+                ->as('admin.')
+                ->middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/admin.php'));
+
+            Route::prefix('/')
+                ->as('user.')
+                ->middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
