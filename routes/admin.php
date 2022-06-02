@@ -30,6 +30,19 @@ Route::get('/', function () {
 Route::resource('owners', OwnersController::class)
 ->middleware('auth:admin');
 
+Route::prefix('expired-owners')->
+    middleware('auth:admin')->group(function(){//無名関数(クロージャ)
+        Route::get('index',[OwnersController::class, 'expiredOwnerIndex'])->name('expired-owners.index');
+        Route::post('destroy/{owner}', [OwnersController::class, 'expiredOwnerDestroy'])->name('expired-owners.destroy');
+    });
+
+/*
+クロージャ（無名関数）とは読んで字の如く、名前のない関数のこと。
+わざわざクロージャを使用するメリットとしてコールバック関数を指定することが出来ると言う理由がある。
+    ※コールバック関数とは関数に渡す別の関数のことである。
+つまり今回のルートで使用しているのは、リクエストごとに実行する関数が違うため使用されていると言うことになる。
+*/
+
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admin'])->name('dashboard');

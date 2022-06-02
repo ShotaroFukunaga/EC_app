@@ -15,11 +15,11 @@ use App\Http\Controllers\LifeCycleTestController;
 */
 
 Route::get('/', function () {
-    return view('user.welcome');
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('user.dashboard');
+    return view('dashboard');
 })->middleware(['auth:users'])->name('dashboard');
 
 Route::get('/component-test1', [ComponentTestContropller::class, 'showComponent1']);
